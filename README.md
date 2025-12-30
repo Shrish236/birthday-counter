@@ -1,4 +1,4 @@
-# 🎉 Birthday Countdown Website for Mahima Singha
+# 🎉 Birthday Countdown Website
 
 A beautiful, animated birthday countdown website built with React, TypeScript, and Vite. Features automatic image downloading from Google Drive at midnight on the birthday, real-time countdown in IST timezone, and fully responsive design for all devices.
 
@@ -257,5 +257,3 @@ birthday-countdown/
 This project is created for personal use as a birthday celebration website.
 
 ---
-
-Made with ❤️ for Mahima Singha's birthday celebration! 🎂✨
