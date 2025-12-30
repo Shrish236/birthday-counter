@@ -1,0 +1,467 @@
+.birthday-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.birthday-content {
+    text-align: center;
+    /* animation: fadeInScale 1s ease-out;  <-- Removed page entrance animation */
+    max-width: 900px;
+    width: 100%;
+}
+
+.birthday-title {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.birthday-name {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 3rem;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.gallery-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    margin: 0 auto 2rem;
+    max-width: 800px;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.gallery-card:hover {
+    transform: scale(1.01);
+}
+
+/* The frame that holds the images */
+.card-outer-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    /* Standard landscape ratio */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+    background: #000;
+    /* Dark background for photos */
+}
+
+/* Portrait aspect ratio override for mobile if needed, but 16/9 is good for mixed */
+@media (max-width: 500px) {
+    .card-outer-frame {
+        aspect-ratio: 4/5;
+        /* Taller for mobile phones */
+    }
+}
+
+/* 1. Blurred Background Layer */
+.image-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px) brightness(0.7);
+    transform: scale(1.1);
+    /* Prevent blur edges showing */
+    z-index: 1;
+    transition: background-image 0.5s ease;
+    /* Smooth crossfade for background */
+}
+
+/* 2. Main Image Layer */
+.gallery-image-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Ensure full image is visible */
+    z-index: 2;
+    /* No animation here - instant switch */
+    animation: fadeIn 0.5s ease-in;
+    /* Added back per user request */
+}
+
+/* Navigation Buttons - Overlaid */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(5px);
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-btn.prev {
+    left: 15px;
+}
+
+.nav-btn.next {
+    right: 15px;
+}
+
+.image-counter {
+    text-align: center;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+.birthday-message {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+    position: absolute;
+    /* Ensure it stays in place during validation */
+    top: 0;
+    left: 0;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Loading and error states */
+.no-images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+}
+
+/* Responsive Design - Mobile First */
+
+/* Extra Small Devices (phones, less than 576px) */
+@media (max-width: 575px) {
+    .birthday-container {
+        padding: 1rem;
+    }
+
+    .birthday-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .birthday-name {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .gallery-card {
+        padding: 1rem;
+        border-radius: 20px;
+        max-width: 100%;
+    }
+
+    .card-inner {
+        border-radius: 15px;
+        margin-bottom: 1rem;
+    }
+
+    .control-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.25rem;
+    }
+
+    .image-counter {
+        font-size: 0.9rem;
+        min-width: 60px;
+    }
+
+    .gallery-controls {
+        gap: 0.75rem;
+    }
+
+    .birthday-message {
+        font-size: 0.95rem;
+        padding: 0 0.5rem;
+    }
+}
+
+/* Small Devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .birthday-container {
+        padding: 1.5rem;
+    }
+
+    .birthday-title {
+        font-size: 1.75rem;
+    }
+
+    .birthday-name {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .gallery-card {
+        padding: 1.5rem;
+        max-width: 500px;
+    }
+
+    .control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .gallery-controls {
+        gap: 1rem;
+    }
+}
+
+/* Medium Devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .birthday-container {
+        padding: 2rem;
+    }
+
+    .birthday-title {
+        font-size: 2.5rem;
+    }
+
+    .birthday-name {
+        font-size: 3.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .gallery-card {
+        max-width: 650px;
+    }
+
+    .birthday-message {
+        font-size: 1.2rem;
+    }
+}
+
+/* Large Devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .gallery-card {
+        max-width: 700px;
+    }
+
+    .birthday-title {
+        font-size: 3rem;
+    }
+
+    .birthday-name {
+        font-size: 4rem;
+    }
+}
+
+/* Extra Large Devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) and (max-width: 1599px) {
+    .birthday-title {
+        font-size: 3.5rem;
+    }
+
+    .birthday-name {
+        font-size: 4.5rem;
+    }
+
+    .gallery-card {
+        max-width: 800px;
+        padding: 2.5rem;
+    }
+
+    .control-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 2.5rem;
+    }
+
+    .image-counter {
+        font-size: 1.4rem;
+        min-width: 100px;
+    }
+
+    .birthday-message {
+        font-size: 1.6rem;
+    }
+}
+
+/* Ultra Wide Monitors (1600px and up) */
+@media (min-width: 1600px) {
+    .birthday-container {
+        padding: 3rem;
+    }
+
+    .birthday-title {
+        font-size: 4.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .birthday-name {
+        font-size: 6rem;
+        margin-bottom: 4rem;
+    }
+
+    .gallery-card {
+        max-width: 1000px;
+        padding: 3rem;
+        border-radius: 40px;
+    }
+
+    .card-inner {
+        border-radius: 25px;
+        margin-bottom: 2rem;
+    }
+
+    .control-btn {
+        width: 70px;
+        height: 70px;
+        font-size: 3rem;
+    }
+
+    .image-counter {
+        font-size: 1.6rem;
+        min-width: 120px;
+    }
+
+    .gallery-controls {
+        gap: 3rem;
+    }
+
+    .birthday-message {
+        font-size: 1.8rem;
+        max-width: 800px;
+    }
+}
+
+/* Landscape Orientation Adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+    .birthday-container {
+        padding: 1rem;
+    }
+
+    .birthday-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .birthday-name {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .gallery-card {
+        padding: 1rem;
+        max-width: 500px;
+    }
+
+    .card-inner {
+        aspect-ratio: 16/9;
+        margin-bottom: 0.75rem;
+    }
+
+    .control-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.25rem;
+    }
+
+    .birthday-message {
+        font-size: 0.9rem;
+    }
+}
+
+/* High DPI / Retina Displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .gallery-image {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}

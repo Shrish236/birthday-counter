@@ -1,0 +1,304 @@
+.countdown-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.content {
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.name {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.subtitle {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+}
+
+.timer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    padding: 0 1rem;
+}
+
+.timer-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: fadeInUp 1s ease-out backwards;
+}
+
+.timer-box:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.timer-box:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.timer-box:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.timer-box:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.timer-box:hover {
+    transform: translateY(-10px) scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+}
+
+.timer-value {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.timer-label {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.date-info {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+    margin-top: 2rem;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    to {
+        text-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+    }
+}
+
+/* Responsive Design - Mobile First */
+
+/* Extra Small Devices (phones, less than 576px) */
+@media (max-width: 575px) {
+    .countdown-container {
+        padding: 1rem;
+    }
+
+    .name {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        letter-spacing: 1px;
+    }
+
+    .timer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        padding: 0 0.5rem;
+    }
+
+    .timer-box {
+        padding: 1.25rem 0.5rem;
+        border-radius: 15px;
+    }
+
+    .timer-value {
+        font-size: 2rem;
+    }
+
+    .timer-label {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    .date-info {
+        font-size: 0.9rem;
+        margin-top: 1.5rem;
+    }
+}
+
+/* Small Devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .countdown-container {
+        padding: 1.5rem;
+    }
+
+    .timer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .timer-box {
+        padding: 1.5rem 0.75rem;
+    }
+}
+
+/* Medium Devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .countdown-container {
+        padding: 2rem;
+    }
+
+    .timer-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+        max-width: 700px;
+    }
+
+    .timer-box {
+        padding: 1.75rem 1rem;
+    }
+
+    .timer-value {
+        font-size: 3rem;
+    }
+}
+
+/* Large Devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .timer-grid {
+        max-width: 800px;
+    }
+}
+
+/* Extra Large Devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) and (max-width: 1599px) {
+    .name {
+        font-size: 5.5rem;
+    }
+
+    .timer-grid {
+        max-width: 900px;
+        gap: 2rem;
+    }
+
+    .timer-box {
+        padding: 2.5rem 1.5rem;
+    }
+}
+
+/* Ultra Wide Monitors (1600px and up) */
+@media (min-width: 1600px) {
+    .countdown-container {
+        padding: 3rem;
+    }
+
+    .name {
+        font-size: 7rem;
+    }
+
+    .subtitle {
+        font-size: 2.5rem;
+        margin-bottom: 4rem;
+    }
+
+    .timer-grid {
+        max-width: 1200px;
+        gap: 2.5rem;
+    }
+
+    .timer-box {
+        padding: 3rem 2rem;
+        border-radius: 25px;
+    }
+
+    .timer-value {
+        font-size: 5rem;
+    }
+
+    .timer-label {
+        font-size: 1.3rem;
+    }
+
+    .date-info {
+        font-size: 1.5rem;
+        margin-top: 3rem;
+    }
+}
+
+/* Landscape Orientation Adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+    .countdown-container {
+        padding: 1rem;
+    }
+
+    .name {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .timer-grid {
+        gap: 0.75rem;
+    }
+
+    .timer-box {
+        padding: 1rem 0.75rem;
+    }
+
+    .timer-value {
+        font-size: 1.75rem;
+    }
+
+    .timer-label {
+        font-size: 0.7rem;
+    }
+
+    .date-info {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+    }
+}
