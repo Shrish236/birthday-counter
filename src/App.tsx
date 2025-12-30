@@ -7,8 +7,8 @@ function App() {
   const [currentState, setCurrentState] = useState<'countdown' | 'birthday' | 'past'>('countdown');
 
   // Birthday: January 7, 2003
-  const BIRTHDAY_MONTH = 11; // January (0-indexed)
-  const BIRTHDAY_DAY = 30;
+  const BIRTHDAY_MONTH = 0; // January (0-indexed)
+  const BIRTHDAY_DAY = 7;
   const BIRTH_YEAR = 2003;
 
   useEffect(() => {
