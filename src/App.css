@@ -51,17 +51,17 @@ body {
 
 .stars {
   background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="2" height="2"><circle cx="1" cy="1" r="1" fill="white" opacity="0.8"/></svg>') repeat;
-  animation: animateStars 10s linear infinite;
+  animation: animateStars 60s linear infinite;
 }
 
 .stars2 {
   background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="3" height="3"><circle cx="1.5" cy="1.5" r="1.5" fill="white" opacity="0.6"/></svg>') repeat;
-  animation: animateStars 20s linear infinite;
+  animation: animateStars 70s linear infinite;
 }
 
 .stars3 {
   background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><circle cx="2" cy="2" r="2" fill="white" opacity="0.4"/></svg>') repeat;
-  animation: animateStars 30s linear infinite;
+  animation: animateStars 80s linear infinite;
 }
 
 @keyframes animateStars {
